@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+</head>
+<body>
+
+    <!-- Write your HTML  content here -->
+<p>Please enter a band name</p>
+<input type="text" id="band">
+<button id="add-band-name">Add</button>
+
+<ul id="band-list">
+    <!--Bands are added to list through JavaScript here -->
+</ul>
+
+<button id="clear">Clear List</button>
+
+<script>
+    console.log('script has loaded')
+    let addButton = document.querySelector('#add-band-name')
+    let bandInput = document.querySelector('#band')
+    let bandList = document.querySelector('#band-list')
+    let clearList = document.querySelector('#clear')
+
+    let itemCount = 0
+    let itemMax = 10
+    let charLength = bandInput.value.length //found this on stack overflow
+    let charLengthMax = 50
+    let charLengthMin = 1
+    
+
+    addButton.addEventListener('click', function() {
+        if (charLength > charLengthMax) {
+            alert('Please enter a band name 50 charagers or less')
+        } else if (charLength < charLengthMin){
+            alert('Please enter a band name at lease 1 charechter long')
+        } else if (itemCount <= itemMax) {
+            alert('You need to clear the list before you can add more bands')
+        }else{
+            let name = bandInput.value 
+            let ListItem = document.createElement('li') 
+            ListItem.innerHTML = name 
+            bandList.appendChild(ListItem)
+            bandInput.value = ''
+            console.log('item was added to the list')
+            itemCount++
+        }
+    })
+    
+
+    
+    clearList.addEventListener ('click', function(){
+        if (confirm('Deleat all items, are you sure?'))
+            bandList.innerHTML = ''
+            itemCount = 0
+            console.log('all items were removed from the list')
+    })
+
+    //add confirm dialog message when list is cleared
+</script>
+
+</body>
+</html>
